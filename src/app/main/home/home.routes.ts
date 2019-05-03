@@ -9,5 +9,9 @@ export const routes: Route[] = [
     {
         path             : 'sample',
         loadChildren     : '../sample/sample.module#SampleModule'
+    },
+    {
+        path             : 'users',
+        loadChildren     : '../users/users.module#UsersModule'
     }
 ];

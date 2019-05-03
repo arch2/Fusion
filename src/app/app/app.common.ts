@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +14,7 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { appRoutes } from './app.routes';
+import { SharedModule } from 'app/shared';
 import { HomeModule } from 'app/main/home/home.module';
 
 export const DECLARATIONS: any[] = [
@@ -40,7 +40,8 @@ export const IMPORTS: any[] = [
     FuseThemeOptionsModule,
     // App modules
     LayoutModule,
-    HomeModule
+    HomeModule,
+    SharedModule
 ]
 export const BOOTSTRAPS: any[] = [
     AppComponent

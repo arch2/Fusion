@@ -3,22 +3,41 @@ export const enLocale = {
     data     : {
         'NAV': {
             'APPLICATIONS'     : 'Applications',
-            'SAMPLE'           : 
+            'PAGES'            : 'Pages',
+            'CATEGORIES'       : 
+            {
+                'TITLE'     : 'Categories',
+                'BADGE'     : '4'
+            },
+            'SAMPLE'     : 
             {
                    'TITLE'     : 'Sample',
                    'BADGE'     : '25'
             },
-            'HOME'           : 
+            'HOME'     : 
             {
                    'TITLE'     : 'Home',
                    'BADGE'     : '25'
+            },
+            'USERS'     : 
+            {
+                   'TITLE'     : 'Users',
+                   'BADGE'     : '24'
+            },
+            'LIGHTBOX'     : 
+            {
+                'TITLE'     : 'Light Box',
+                'BADGE'      : '4'
             }
         },
         'SAMPLE': {
             'HELLO'     : 'Hello, World!'
         },
         'HOME': {
-            'WELCOME'     : 'Welcome to the hope page!'
+            'WELCOME'     : 'Welcome to the home page!'
+        },
+        'USERS': {
+            'WELCOME'     : 'Welcome to the USERS page!'
         }
     }
 };

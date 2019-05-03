@@ -1,17 +1,22 @@
 export const trLocale = {
-    lang     : 'tr',
-    data     : {
+    lang: 'tr',
+    data: {
         'NAV': {
             'APPLICATIONS'     : 'Programlar',
             'SAMPLE'           : 
             {
-                   'TITLE'     : 'Örnek',
-                   'BADGE'     : '15'
+                'TITLE'     : 'Örnek',
+                'BADGE'     : '15'
             },
-            'HOME'           : 
+            'HOME'     : 
             {
-                   'TITLE'     : 'Ev',
-                   'BADGE'     : '25'
+                'TITLE'     : 'Ev',
+                'BADGE'     : '25'
+            },
+            'USERS'     : 
+            {
+                'TITLE'     : 'Users',
+                'BADGE'     : '24'
             }
         },
         'SAMPLE': {
@@ -19,6 +24,9 @@ export const trLocale = {
         },
         'HOME': {
             'WELCOME'     : 'Umut sayfasına hoş geldiniz!'
+        },
+        'USERS': {
+            'WELCOME'     : 'Welcome to the USERS page!'
         }
     }
 };
