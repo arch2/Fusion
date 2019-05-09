@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { enLocale, trLocale } from 'app/i18n';
 import { DataService } from 'app/shared/services';
+import { DataItem } from 'app/shared/models/DataItem';
 
 @Component({
   selector        : 'app-users',
@@ -9,16 +10,29 @@ import { DataService } from 'app/shared/services';
   styleUrls       : ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  private users: any;
+  users                         : DataItem[];
+  categories                    : any[];
+  courses                       : any[];
+  coursesFilteredByCategory     : any[];
+  filteredCourses               : any[];
+  currentCategory               : string;
+  searchTerm                    : string;
   constructor(private _fuseTranslationLoaderService: FuseTranslationLoaderService, private dataService: DataService) {
     this._fuseTranslationLoaderService.loadTranslations(enLocale, trLocale);
   }
 
   ngOnInit() {
-    this.dataService.getUsers()
+    // this.dataService.getUsers()
+    //   .subscribe(
+    //     x => {
+    //       this.users = x;
+    //     }
+    //   );
+    this.dataService.getWholeDB()
       .subscribe(
         x => {
-          this.users = JSON.stringify(x);
+          this.courses    = x.DataItem;
+          this.categories = x.DataItem.map(x => x.category);
         }
       );
   }
