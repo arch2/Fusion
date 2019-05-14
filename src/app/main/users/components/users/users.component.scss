@@ -114,20 +114,32 @@
                         min-height: 64px !important;
                         max-height: 64px !important;
 
-                        &.web-bg {
+                        &.Artist-bg {
                             background: mat-color($mat-blue, 500);
                         }
 
-                        &.android-bg {
+                        &.ExG-bg {
                             background: mat-color($mat-green, 500);
                         }
 
-                        &.firebase-bg {
+                        &.Skinz-bg {
                             background: mat-color($mat-amber, 800);
                         }
 
-                        &.cloud-bg {
+                        &.Games-bg {
+                            background: mat-color($mat-red, 500);
+                        }
+
+                        &.Toons-bg {
+                            background: mat-color($mat-red, 300);
+                        }
+
+                        &.Username-bg {
                             background: mat-color($mat-blue-grey, 500);
+                        }
+
+                        &.People-bg {
+                            background: mat-color($mat-pink, 500);
                         }
 
                         .category {

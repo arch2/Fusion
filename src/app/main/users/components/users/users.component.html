@@ -6,11 +6,10 @@
     <div class="hero-text">
       <mat-icon class="hero-icon">school</mat-icon>
       <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
-        WELCOME TO ACADEMY
+        Welcome
       </h1>
       <h3 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
-        Our courses will step you through the process of building a small application, or adding a new feature
-        to an existing application.
+        It begins...
       </h3>
     </div>
 
@@ -35,8 +34,8 @@
             <mat-option [value]="'all'">
               All
             </mat-option>
-            <mat-option *ngFor="let category of categories" [value]="category.value">
-              {{ category.label }}
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{ category }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -57,20 +56,19 @@
 
               <div class="length" fxLayout="row" fxLayoutAlign="center center">
                 <mat-icon class="length-icon s-20">access_time</mat-icon>
-                <div class="min">{{course.length}} min</div>
+                <div class="min">1 min</div>
               </div>
 
             </div>
 
             <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
-              <div class="h1">{{course.title}}</div>
-              <div class="updated">Updated {{course.updated}}</div>
+              <div class="h1">{{course.name}}</div>
             </div>
 
             <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-              <button mat-button color="accent" [routerLink]="'/apps/academy/courses/' + course.id + '/' + course.slug">
-                START
-              </button>
+              <a mat-button color="accent" [href]="course.site" target="_blank">
+                Go
+              </a>
             </div>
 
           </div>

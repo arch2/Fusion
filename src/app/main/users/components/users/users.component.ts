@@ -3,20 +3,22 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 import { enLocale, trLocale } from 'app/i18n';
 import { DataService } from 'app/shared/services';
 import { DataItem } from 'app/shared/models/DataItem';
+import { fuseAnimations } from '@fuse/animations';
 
 @Component({
   selector        : 'app-users',
   templateUrl     : './users.component.html',
-  styleUrls       : ['./users.component.scss']
+  styleUrls       : ['./users.component.scss'],
+  animations      : fuseAnimations
 })
 export class UsersComponent implements OnInit {
   users                         : DataItem[];
-  categories                    : any[];
-  courses                       : any[];
-  coursesFilteredByCategory     : any[];
-  filteredCourses               : any[];
-  currentCategory               : string;
-  searchTerm                    : string;
+  categories                    : any[] = [];
+  courses                       : any[] = [];
+  coursesFilteredByCategory     : any[] = [];
+  filteredCourses               : any[] = [];
+  currentCategory               : string='';
+  searchTerm                    : string='';
   constructor(private _fuseTranslationLoaderService: FuseTranslationLoaderService, private dataService: DataService) {
     this._fuseTranslationLoaderService.loadTranslations(enLocale, trLocale);
   }
@@ -31,9 +33,52 @@ export class UsersComponent implements OnInit {
     this.dataService.getWholeDB()
       .subscribe(
         x => {
-          this.courses    = x.DataItem;
-          this.categories = x.DataItem.map(x => x.category);
+              this.courses = this.filteredCourses = this.coursesFilteredByCategory = x.DataItem;
+          let cats         = Array.from(new Set(x.DataItem.map(x => x.category)));
+          console.log(cats);
+          this.categories = cats;
+          //this.categories = x.DataItem.map(x => x.category);          
+          //this.categories = Array.from(new Set(x.DataItem.map(x => x.category)));
         }
       );
+  }
+
+  /**
+   * Filter courses by category
+   */
+  filterCoursesByCategory(): void {
+    // Filter
+    if (this.currentCategory === 'all') {
+      this.coursesFilteredByCategory = this.courses;
+      this.filteredCourses           = this.courses;
+    }
+    else {
+      this.coursesFilteredByCategory = this.courses.filter((course) => {
+        return course.category == this.currentCategory;
+      });
+
+      this.filteredCourses = [...this.coursesFilteredByCategory];
+
+    }
+
+    // Re-filter by search term
+    this.filterCoursesByTerm();
+  }
+
+  /**
+   * Filter courses by term
+   */
+  filterCoursesByTerm(): void {
+    const searchTerm = this.searchTerm.toLowerCase();
+
+    // Search
+    if (searchTerm === '') {
+      this.filteredCourses = this.coursesFilteredByCategory;
+    }
+    else {
+      this.filteredCourses = this.coursesFilteredByCategory.filter((course) => {
+        return course.name.toLowerCase().includes(searchTerm);
+      });
+    }
   }
 }
