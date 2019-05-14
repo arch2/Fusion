@@ -12,15 +12,19 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<DataItem[]> {
-    return this.getWholeDB()
-      .pipe(
-        map(
-          x => x.DataItem.filter(
-            di => di.category == "Username"
-          )
-        )
-      );
+  getGeneral(): Observable<DataItem[]> {
+    // return this.getWholeDB()
+    //   .pipe(
+    //     map(
+    //       x => x.DataItem.filter(
+    //         di => di.category == "Username"
+    //       )
+    //     )
+    //   );
+    return this.getWholeDB().pipe(map(x => x.GeneralItems))
+  }
+  getGeneralCategories(): Observable<string[]> {
+    return this.getWholeDB().pipe(map(x => x.GeneralCategories))
   }
   getWholeDB(): Observable<DB> {
     return this.http.get<DB>('assets/jDB.json');

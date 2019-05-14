@@ -17,8 +17,8 @@ export class UsersComponent implements OnInit {
   courses                       : any[] = [];
   coursesFilteredByCategory     : any[] = [];
   filteredCourses               : any[] = [];
-  currentCategory               : string='';
-  searchTerm                    : string='';
+  currentCategory               : string = '';
+  searchTerm                    : string = '';
   constructor(private _fuseTranslationLoaderService: FuseTranslationLoaderService, private dataService: DataService) {
     this._fuseTranslationLoaderService.loadTranslations(enLocale, trLocale);
   }
@@ -30,17 +30,23 @@ export class UsersComponent implements OnInit {
     //       this.users = x;
     //     }
     //   );
-    this.dataService.getWholeDB()
+    // this.dataService.getWholeDB()
+    //   .subscribe(
+    //     x => {
+    //           this.courses = this.filteredCourses = this.coursesFilteredByCategory = x.DataItem;
+    //       let cats         = Array.from(new Set(x.DataItem.map(x => x.category)));
+    //       console.log(cats);
+    //       this.categories = cats;
+    //     }
+    //   );
+    this.dataService.getGeneralCategories()
       .subscribe(
-        x => {
-              this.courses = this.filteredCourses = this.coursesFilteredByCategory = x.DataItem;
-          let cats         = Array.from(new Set(x.DataItem.map(x => x.category)));
-          console.log(cats);
-          this.categories = cats;
-          //this.categories = x.DataItem.map(x => x.category);          
-          //this.categories = Array.from(new Set(x.DataItem.map(x => x.category)));
-        }
+        categories => { this.categories = categories }
       );
+    this.dataService.getGeneral()
+      .subscribe(
+        generalItems => { this.courses = this.filteredCourses = this.coursesFilteredByCategory = generalItems }
+      )
   }
 
   /**
@@ -54,7 +60,7 @@ export class UsersComponent implements OnInit {
     }
     else {
       this.coursesFilteredByCategory = this.courses.filter((course) => {
-        return course.category == this.currentCategory;
+        return course.Category == this.currentCategory;
       });
 
       this.filteredCourses = [...this.coursesFilteredByCategory];
@@ -77,7 +83,7 @@ export class UsersComponent implements OnInit {
     }
     else {
       this.filteredCourses = this.coursesFilteredByCategory.filter((course) => {
-        return course.name.toLowerCase().includes(searchTerm);
+        return course.Name.toLowerCase().includes(searchTerm) || course.Site.toLowerCase().includes(searchTerm);
       });
     }
   }

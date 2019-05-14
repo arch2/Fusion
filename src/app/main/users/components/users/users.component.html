@@ -44,14 +44,14 @@
 
       <div class="courses" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{value:'50'}">
 
-        <div class="course" *ngFor="let course of filteredCourses" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33" [ngClass]="course.category" [@animate]="{value:'*',params:{y:'100%'}}">
+        <div class="course" *ngFor="let course of filteredCourses" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33" [ngClass]="course.Category" [@animate]="{value:'*',params:{y:'100%'}}">
 
           <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
 
-            <div class="header" fxLayout="row" fxLayoutAlign="center center" [ngClass]="course.category + '-bg'">
+            <div class="header" fxLayout="row" fxLayoutAlign="center center" [ngClass]="course.Category + '-bg'">
 
               <div class="category" fxFlex>
-                {{course.category}}
+                {{course.Category}}
               </div>
 
               <div class="length" fxLayout="row" fxLayoutAlign="center center">
@@ -62,11 +62,11 @@
             </div>
 
             <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
-              <div class="h1">{{course.name}}</div>
+              <div class="h1">{{course.Name}}</div>
             </div>
 
             <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-              <a mat-button color="accent" [href]="course.site" target="_blank">
+              <a mat-button color="accent" [href]="course.Site" target="_blank">
                 Go
               </a>
             </div>
